@@ -15,7 +15,9 @@ class UsersController < ApplicationController
         current_user.save
       end
 
-      @tasks = @task_lists.first.tasks
+      @task_list = @task_lists.first
+      @tasks = @task_list.tasks
+      @new_task = @tasks.build
     end
 	end
 
