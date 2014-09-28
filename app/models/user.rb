@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, 
 				 :confirmable, :lockable,
-				 :omniauthable, :omniauth_providers => [:facebook]
+				 :omniauthable, :omniauth_providers => [:google_oauth2]
 
-	enum provider: [:facebook]
+	enum provider: [:google]
 
 	def self.new_with_session(params, session)
 		super.tap do |user|
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def self.find_for_facebook_oauth(auth)
+	def self.find_for_google_oauth2(auth)
 		where(auth.slice(:provider, :uid)).first_or_create do |user|
 			user.provider = auth.provider
 			user.uid = auth.uid
@@ -31,5 +31,4 @@ class User < ActiveRecord::Base
 			user.skip_confirmation! if auth.info.verified
 		end
 	end
-
 end
