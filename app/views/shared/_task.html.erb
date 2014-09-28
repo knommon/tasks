@@ -1,5 +1,8 @@
+<% if task.id %>
 <li id="<%= task.id %>">
   <span class="content"><%= task.content %></span>
   <span class="timestamp">
+    Created <%= time_ago_in_words(task.created_at) %> ago.
   </span>
 </li>
+<% end %>

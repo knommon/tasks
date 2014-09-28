@@ -5,6 +5,9 @@ class TasksController < ApplicationController
   def index
   end
 
+  def show
+  end
+
   def create
     @task = @task_list.tasks.build(post_params)
     #@task.user_id = current_user.id
