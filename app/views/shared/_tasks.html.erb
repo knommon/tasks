@@ -1,0 +1,6 @@
+<% if @tasks.any? %>
+  <ol class="tasks">
+    <%= render partial: 'shared/task', collection: @tasks %>
+  </ol>
+  <%= will_paginate @tasks %>
+<% end %>

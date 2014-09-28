@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	has_many :tasks, dependent: :destroy
+	has_many :task_lists, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

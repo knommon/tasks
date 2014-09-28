@@ -8,6 +8,14 @@ class UsersController < ApplicationController
 
 	def home
     if user_signed_in?
+      @task_lists = current_user.task_lists
+      if @task_lists.empty?
+        current_user.task_lists.build(name: "Tasks")
+        current_user.task_lists.build(name: "Archive")
+        current_user.save
+      end
+
+      @tasks = @task_lists.first.tasks
     end
 	end
 

@@ -1,0 +1,5 @@
+<% if @task_lists.any? %>
+  <ol class="posts">
+    <%= render partial: 'shared/task_list', collection: @task_lists %>
+  </ol>
+<% end %>

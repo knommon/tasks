@@ -9,12 +9,11 @@ Rails.application.routes.draw do
 	}
 
 	resources :users do
-		member do
-			get :following, :followers
-		end
 	end
 
-	resources :tasks,					only: [:create, :destroy]
+	resources :task_lists,    only: [:create, :update] do
+    resources :tasks,					only: [:create, :update, :destroy]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927221520) do
+ActiveRecord::Schema.define(version: 20140928123614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140927221520) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "tasks", force: true do |t|
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(version: 20140927221520) do
     t.boolean  "read"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "task_list_id"
   end
 
   add_index "tasks", ["to", "created_at"], name: "index_tasks_on_to_and_created_at", using: :btree

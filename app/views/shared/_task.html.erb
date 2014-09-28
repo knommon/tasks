@@ -1,0 +1,11 @@
+<li id="<%= task.id %>">
+  <span class="content"><%= task.content %></span>
+  <span class="timestamp">
+    Created <%= time_ago_in_words(task.created_at) %> ago.
+  </span>
+  <% if current_user? task.user %>
+    <%= link_to "delete", feed_item, method: :delete,
+                                data: { confirm: "Are you sure?" },
+                                title: feed_item.content %>
+  <% end %>
+</li>
