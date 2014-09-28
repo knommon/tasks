@@ -15,18 +15,6 @@ class UsersController < ApplicationController
     #@posts = @user.posts.paginate(page: params[:page])
 	end
 
-  def google_oauth2
-    @user = User.find_for_google_oauth2(request.env["omniauth.auth"], current_user)
-
-    if @user.persisted?
-      flash[:notice] = "Successfully authenticated Google account"
-      sign_in_and_redirect @user, :event => :authentication
-    else
-      session["devise.google_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
-    end
-  end
-
 	# used in devise :sign_up and :update_account
 	def self.extra_params
 		:name

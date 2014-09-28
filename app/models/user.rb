@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 		end
 	end
 
-	def self.find_for_google_oauth2(auth, current_user)
+	def self.find_for_google_oauth2(auth, crurrent_user)
 		where(auth.slice(:provider, :uid)).first_or_create do |user|
 			user.provider = auth.provider
 			user.uid = auth.uid
