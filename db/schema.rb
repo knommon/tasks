@@ -16,30 +16,24 @@ ActiveRecord::Schema.define(version: 20140927221520) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "posts", force: true do |t|
-    t.integer  "user_id"
-    t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "posts", ["user_id", "created_at"], name: "index_posts_on_user_id_and_created_at", using: :btree
-
-  create_table "relationships", force: true do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
-    t.integer "mask"
-  end
-
-  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
-  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
-  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
-
   create_table "task_lists", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "tasks", force: true do |t|
+    t.integer  "from"
+    t.integer  "to"
+    t.string   "content"
+    t.integer  "priority"
+    t.integer  "status"
+    t.boolean  "read"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tasks", ["to", "created_at"], name: "index_tasks_on_to_and_created_at", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

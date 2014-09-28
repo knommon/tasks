@@ -9,9 +9,9 @@ default: &default
   encoding: unicode
   pool: 5
   timeout: 5000
-  database: ENV['DB_NAME']
-  username: ENV['DB_USER']
-  password: ENV['DB_PASS']
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASS'] %>
 
 development:
   <<: *default
@@ -21,7 +21,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: ENV['DB_NAME']_test
+  database: <%= ENV['DB_NAME'] %>_test
 
 production:
   <<: *default

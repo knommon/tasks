@@ -12,13 +12,13 @@ class User < ActiveRecord::Base
 
 	def self.new_with_session(params, session)
 		super.tap do |user|
-			if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+			if data = session["devise.google_data"] && session["devise.google_data"]["extra"]["raw_info"]
 				user.email = data["email"] if user.email.blank?
 			end
 		end
 	end
 
-	def self.find_for_google_oauth2(auth)
+	def self.find_for_google_oauth2(auth, current_user)
 		where(auth.slice(:provider, :uid)).first_or_create do |user|
 			user.provider = auth.provider
 			user.uid = auth.uid
